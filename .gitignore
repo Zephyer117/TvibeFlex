@@ -1,0 +1,21 @@
+# dependencies
+node_modules/
+sanity-studio/node_modules/
+
+# env & secrets
+.env
+.env.local
+.env*.local
+
+# next.js
+.next/
+out/
+
+# build / cache
+tsconfig.tsbuildinfo
+.sanity/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
