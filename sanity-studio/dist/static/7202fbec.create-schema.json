@@ -1,0 +1,1521 @@
+[
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "options": {
+          "source": "name"
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "min",
+                "constraint": 0
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "price",
+        "type": "number",
+        "title": "Price (BDT)"
+      },
+      {
+        "name": "comparePrice",
+        "type": "number",
+        "title": "Compare at Price (BDT)"
+      },
+      {
+        "rows": 3,
+        "name": "description",
+        "type": "text",
+        "title": "Short Description"
+      },
+      {
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "i18nTitleKey": "inputs.portable-text.annotation.link",
+                  "options": {
+                    "modal": {
+                      "type": "popover"
+                    }
+                  },
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/",
+                                    "/^tel$/",
+                                    "/^mailto$/"
+                                  ],
+                                  "allowRelative": true,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "description": "A valid web, email, phone, or relative link.",
+                      "name": "href",
+                      "type": "url",
+                      "title": "Link"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Strong"
+                },
+                {
+                  "value": "em",
+                  "title": "Italic"
+                },
+                {
+                  "value": "code",
+                  "title": "Code"
+                },
+                {
+                  "value": "underline",
+                  "title": "Underline"
+                },
+                {
+                  "value": "strike-through",
+                  "title": "Strike"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bulleted list"
+              },
+              {
+                "value": "number",
+                "title": "Numbered list"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              },
+              {
+                "value": "h1",
+                "title": "Heading 1"
+              },
+              {
+                "value": "h2",
+                "title": "Heading 2"
+              },
+              {
+                "value": "h3",
+                "title": "Heading 3"
+              },
+              {
+                "value": "h4",
+                "title": "Heading 4"
+              },
+              {
+                "value": "h5",
+                "title": "Heading 5"
+              },
+              {
+                "value": "h6",
+                "title": "Heading 6"
+              },
+              {
+                "value": "blockquote",
+                "title": "Quote"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          },
+          {
+            "type": "image"
+          }
+        ],
+        "name": "body",
+        "type": "array",
+        "title": "Full Description"
+      },
+      {
+        "of": [
+          {
+            "options": {
+              "hotspot": true
+            },
+            "type": "image"
+          }
+        ],
+        "name": "images",
+        "type": "array"
+      },
+      {
+        "to": [
+          {
+            "type": "category"
+          }
+        ],
+        "name": "category",
+        "type": "reference"
+      },
+      {
+        "initialValue": 0,
+        "name": "stock",
+        "type": "number",
+        "title": "Stock Quantity"
+      },
+      {
+        "initialValue": false,
+        "name": "featured",
+        "type": "boolean",
+        "title": "Featured Product"
+      },
+      {
+        "options": {
+          "layout": "tags"
+        },
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "tags",
+        "type": "array"
+      },
+      {
+        "description": "Optional options such as Size or Color. Shoppers must choose one value per option before adding to cart.",
+        "of": [
+          {
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "name",
+                "type": "string",
+                "title": "Option Name"
+              },
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      },
+                      {
+                        "flag": "min",
+                        "constraint": 1
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "of": [
+                  {
+                    "type": "string"
+                  }
+                ],
+                "name": "values",
+                "type": "array",
+                "title": "Available Values"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "variantOptions",
+        "type": "array",
+        "title": "Product Variations"
+      }
+    ],
+    "name": "product",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "options": {
+          "source": "name"
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "image",
+        "type": "image"
+      }
+    ],
+    "name": "category",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "options": {
+          "source": "title"
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "rows": 2,
+        "name": "excerpt",
+        "type": "text"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "mainImage",
+        "type": "image"
+      },
+      {
+        "of": [
+          {
+            "marks": {
+              "annotations": [
+                {
+                  "i18nTitleKey": "inputs.portable-text.annotation.link",
+                  "options": {
+                    "modal": {
+                      "type": "popover"
+                    }
+                  },
+                  "fields": [
+                    {
+                      "validation": [
+                        {
+                          "rules": [
+                            {
+                              "flag": "uri",
+                              "constraint": {
+                                "options": {
+                                  "scheme": [
+                                    "/^http$/",
+                                    "/^https$/",
+                                    "/^tel$/",
+                                    "/^mailto$/"
+                                  ],
+                                  "allowRelative": true,
+                                  "relativeOnly": false,
+                                  "allowCredentials": false
+                                }
+                              }
+                            }
+                          ],
+                          "level": "error"
+                        }
+                      ],
+                      "description": "A valid web, email, phone, or relative link.",
+                      "name": "href",
+                      "type": "url",
+                      "title": "Link"
+                    }
+                  ],
+                  "name": "link",
+                  "type": "object"
+                }
+              ],
+              "decorators": [
+                {
+                  "value": "strong",
+                  "title": "Strong"
+                },
+                {
+                  "value": "em",
+                  "title": "Italic"
+                },
+                {
+                  "value": "code",
+                  "title": "Code"
+                },
+                {
+                  "value": "underline",
+                  "title": "Underline"
+                },
+                {
+                  "value": "strike-through",
+                  "title": "Strike"
+                }
+              ]
+            },
+            "lists": [
+              {
+                "value": "bullet",
+                "title": "Bulleted list"
+              },
+              {
+                "value": "number",
+                "title": "Numbered list"
+              }
+            ],
+            "styles": [
+              {
+                "value": "normal",
+                "title": "Normal"
+              },
+              {
+                "value": "h1",
+                "title": "Heading 1"
+              },
+              {
+                "value": "h2",
+                "title": "Heading 2"
+              },
+              {
+                "value": "h3",
+                "title": "Heading 3"
+              },
+              {
+                "value": "h4",
+                "title": "Heading 4"
+              },
+              {
+                "value": "h5",
+                "title": "Heading 5"
+              },
+              {
+                "value": "h6",
+                "title": "Heading 6"
+              },
+              {
+                "value": "blockquote",
+                "title": "Quote"
+              }
+            ],
+            "of": [],
+            "type": "block"
+          },
+          {
+            "type": "image"
+          }
+        ],
+        "name": "body",
+        "type": "array"
+      },
+      {
+        "to": [
+          {
+            "type": "author"
+          }
+        ],
+        "name": "author",
+        "type": "reference"
+      },
+      {
+        "options": {
+          "layout": "tags"
+        },
+        "of": [
+          {
+            "type": "string"
+          }
+        ],
+        "name": "categories",
+        "type": "array"
+      },
+      {
+        "name": "publishedAt",
+        "type": "datetime"
+      }
+    ],
+    "name": "post",
+    "type": "document",
+    "title": "Blog Post"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "name": "bio",
+        "type": "string"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "name": "image",
+        "type": "image"
+      }
+    ],
+    "name": "author",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "readOnly": true,
+        "name": "clerkId",
+        "type": "string",
+        "title": "Clerk User ID"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "readOnly": true,
+        "name": "email",
+        "type": "string"
+      },
+      {
+        "name": "fullName",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "imageUrl",
+        "type": "url",
+        "title": "Profile Image URL"
+      },
+      {
+        "name": "phone",
+        "type": "string"
+      }
+    ],
+    "name": "storeUser",
+    "type": "document",
+    "title": "Store Customer"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "readOnly": true,
+        "name": "orderNumber",
+        "type": "string",
+        "title": "Order ID"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Cash on Delivery",
+              "value": "cod"
+            },
+            {
+              "title": "Stripe (legacy)",
+              "value": "stripe"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "cod",
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "cod",
+                  "stripe"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "paymentMethod",
+        "type": "string"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Pending",
+              "value": "pending"
+            },
+            {
+              "title": "Confirmed",
+              "value": "confirmed"
+            },
+            {
+              "title": "Delivered",
+              "value": "delivered"
+            },
+            {
+              "title": "Cancelled",
+              "value": "cancelled"
+            },
+            {
+              "title": "Paid (legacy)",
+              "value": "paid"
+            },
+            {
+              "title": "Processing (legacy)",
+              "value": "processing"
+            },
+            {
+              "title": "Shipped (legacy)",
+              "value": "shipped"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "pending",
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "pending",
+                  "confirmed",
+                  "delivered",
+                  "cancelled",
+                  "paid",
+                  "processing",
+                  "shipped"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "status",
+        "type": "string",
+        "title": "Order Status"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "readOnly": true,
+        "name": "orderPlacedAt",
+        "type": "datetime",
+        "title": "Order Date & Time"
+      },
+      {
+        "description": "Linked account — used for secure My Orders access.",
+        "to": [
+          {
+            "type": "storeUser"
+          }
+        ],
+        "readOnly": true,
+        "name": "customerUser",
+        "type": "reference",
+        "title": "Authenticated Customer"
+      },
+      {
+        "fields": [
+          {
+            "name": "fullName",
+            "type": "string"
+          },
+          {
+            "name": "phone",
+            "type": "string",
+            "title": "Phone Number"
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "title": "Email (optional)"
+          },
+          {
+            "name": "firstName",
+            "type": "string",
+            "title": "First Name (legacy)"
+          },
+          {
+            "name": "lastName",
+            "type": "string",
+            "title": "Last Name (legacy)"
+          }
+        ],
+        "name": "customer",
+        "type": "object",
+        "title": "Customer Details"
+      },
+      {
+        "fields": [
+          {
+            "rows": 2,
+            "name": "address",
+            "type": "text",
+            "title": "Full Address / Location"
+          },
+          {
+            "name": "city",
+            "type": "string"
+          },
+          {
+            "name": "state",
+            "type": "string"
+          },
+          {
+            "name": "postalCode",
+            "type": "string"
+          },
+          {
+            "name": "country",
+            "type": "string",
+            "title": "Country (optional)"
+          }
+        ],
+        "name": "shippingAddress",
+        "type": "object",
+        "title": "Delivery Address"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "productId",
+                "type": "string",
+                "title": "Product ID"
+              },
+              {
+                "name": "name",
+                "type": "string",
+                "title": "Product Name"
+              },
+              {
+                "name": "price",
+                "type": "number",
+                "title": "Unit Price"
+              },
+              {
+                "name": "quantity",
+                "type": "number"
+              },
+              {
+                "name": "image",
+                "type": "string",
+                "title": "Image URL"
+              },
+              {
+                "of": [
+                  {
+                    "fields": [
+                      {
+                        "name": "name",
+                        "type": "string",
+                        "title": "Option"
+                      },
+                      {
+                        "name": "value",
+                        "type": "string"
+                      }
+                    ],
+                    "type": "object"
+                  }
+                ],
+                "name": "variations",
+                "type": "array",
+                "title": "Selected Variations"
+              }
+            ],
+            "type": "object"
+          }
+        ],
+        "name": "items",
+        "type": "array",
+        "title": "Order Items"
+      },
+      {
+        "readOnly": true,
+        "name": "subtotal",
+        "type": "number",
+        "title": "Subtotal (BDT)"
+      },
+      {
+        "readOnly": true,
+        "name": "shippingCost",
+        "type": "number",
+        "title": "Shipping Cost (BDT)"
+      },
+      {
+        "readOnly": true,
+        "name": "total",
+        "type": "number",
+        "title": "Total (BDT)"
+      },
+      {
+        "rows": 3,
+        "name": "notes",
+        "type": "text",
+        "title": "Internal Notes"
+      },
+      {
+        "readOnly": true,
+        "name": "stripeSessionId",
+        "type": "string",
+        "title": "Stripe Session ID (legacy)"
+      },
+      {
+        "readOnly": true,
+        "name": "stripePaymentIntentId",
+        "type": "string",
+        "title": "Stripe Payment Intent ID (legacy)"
+      }
+    ],
+    "name": "order",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "to": [
+          {
+            "type": "storeUser"
+          }
+        ],
+        "readOnly": true,
+        "name": "user",
+        "type": "reference",
+        "title": "Customer"
+      },
+      {
+        "description": "Set when the customer submits a comment from a product page.",
+        "to": [
+          {
+            "type": "product"
+          }
+        ],
+        "readOnly": true,
+        "name": "product",
+        "type": "reference"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "authorName",
+        "type": "string",
+        "title": "Display Name"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "authorImageUrl",
+        "type": "url",
+        "title": "Profile Image URL"
+      },
+      {
+        "rows": 4,
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "min",
+                "constraint": 10
+              },
+              {
+                "flag": "max",
+                "constraint": 1000
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "message",
+        "type": "text",
+        "title": "Review / Comment"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 1
+              },
+              {
+                "flag": "max",
+                "constraint": 5
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "rating",
+        "type": "number",
+        "title": "Rating (1–5)"
+      },
+      {
+        "readOnly": true,
+        "name": "submittedAt",
+        "type": "datetime"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Pending review",
+              "value": "pending"
+            },
+            {
+              "title": "Approved (visible on site)",
+              "value": "approved"
+            },
+            {
+              "title": "Rejected",
+              "value": "rejected"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "pending",
+        "name": "status",
+        "type": "string"
+      },
+      {
+        "initialValue": false,
+        "description": "Highlight this review in the featured testimonials section.",
+        "name": "featured",
+        "type": "boolean",
+        "title": "Featured on homepage"
+      }
+    ],
+    "name": "testimonial",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": [
+          {
+            "value": "2,400+",
+            "label": "Happy Clients"
+          },
+          {
+            "value": "180+",
+            "label": "Premium Products"
+          },
+          {
+            "value": "15+",
+            "label": "Years of Craft"
+          }
+        ],
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "min",
+                "constraint": 3
+              },
+              {
+                "flag": "max",
+                "constraint": 3
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "description": "Three stats shown in the homepage hero (e.g. 2,400+ Happy Clients).",
+        "of": [
+          {
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "description": "Display value, e.g. \"2,400+\" or \"180+\"",
+                "name": "value",
+                "type": "string"
+              },
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "description": "e.g. \"Happy Clients\"",
+                "name": "label",
+                "type": "string"
+              }
+            ],
+            "type": "object",
+            "name": "statItem"
+          }
+        ],
+        "name": "stats",
+        "type": "array",
+        "title": "Hero Statistics"
+      }
+    ],
+    "name": "homepageStats",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": "Stay Informed",
+        "name": "eyebrow",
+        "type": "string"
+      },
+      {
+        "initialValue": "Join the Inner Circle",
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string",
+        "title": "Heading"
+      },
+      {
+        "rows": 3,
+        "initialValue": "Be the first to know about new arrivals, exclusive offers, and curated stories.",
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "initialValue": "Your email address",
+        "name": "emailPlaceholder",
+        "type": "string"
+      },
+      {
+        "initialValue": "Subscribe",
+        "name": "buttonLabel",
+        "type": "string"
+      },
+      {
+        "initialValue": "Thank you for subscribing!",
+        "name": "successMessage",
+        "type": "string"
+      }
+    ],
+    "name": "newsletterSettings",
+    "type": "document",
+    "title": "Newsletter CTA"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "readOnly": true,
+        "name": "email",
+        "type": "string"
+      },
+      {
+        "readOnly": true,
+        "name": "subscribedAt",
+        "type": "datetime"
+      },
+      {
+        "initialValue": "homepage",
+        "readOnly": true,
+        "name": "source",
+        "type": "string"
+      }
+    ],
+    "name": "newsletterSubscriber",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": "TVibe",
+        "name": "brandHighlight",
+        "type": "string",
+        "title": "Brand highlight"
+      },
+      {
+        "initialValue": "Flex",
+        "name": "brandName",
+        "type": "string",
+        "title": "Brand name"
+      },
+      {
+        "rows": 3,
+        "initialValue": "Premium products curated for the discerning individual. Crafted with excellence, delivered with care.",
+        "name": "tagline",
+        "type": "text"
+      },
+      {
+        "initialValue": [
+          {
+            "label": "All Products",
+            "href": "/shop"
+          },
+          {
+            "label": "Wishlist",
+            "href": "/wishlist"
+          },
+          {
+            "label": "Journal",
+            "href": "/blog"
+          }
+        ],
+        "of": [
+          {
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "label",
+                "type": "string"
+              },
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "description": "e.g. \"/shop\" or \"/about\"",
+                "name": "href",
+                "type": "string",
+                "title": "URL path"
+              }
+            ],
+            "type": "object",
+            "name": "footerLink"
+          }
+        ],
+        "name": "shopLinks",
+        "type": "array",
+        "title": "Shop links"
+      },
+      {
+        "initialValue": [
+          {
+            "label": "About Us",
+            "href": "/about"
+          },
+          {
+            "label": "Contact",
+            "href": "/contact"
+          },
+          {
+            "label": "My Orders",
+            "href": "/account/orders"
+          }
+        ],
+        "of": [
+          {
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "label",
+                "type": "string"
+              },
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "description": "e.g. \"/shop\" or \"/about\"",
+                "name": "href",
+                "type": "string",
+                "title": "URL path"
+              }
+            ],
+            "type": "object",
+            "name": "footerLink"
+          }
+        ],
+        "name": "infoLinks",
+        "type": "array",
+        "title": "Info links"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "options": {
+                  "list": [
+                    {
+                      "title": "Instagram",
+                      "value": "instagram"
+                    },
+                    {
+                      "title": "Twitter / X",
+                      "value": "twitter"
+                    },
+                    {
+                      "title": "Facebook",
+                      "value": "facebook"
+                    }
+                  ]
+                },
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "valid",
+                        "constraint": [
+                          "instagram",
+                          "twitter",
+                          "facebook"
+                        ]
+                      },
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "platform",
+                "type": "string"
+              },
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "uri",
+                        "constraint": {
+                          "options": {
+                            "scheme": [
+                              "/^http$/",
+                              "/^https$/"
+                            ],
+                            "allowRelative": false,
+                            "relativeOnly": false,
+                            "allowCredentials": false
+                          }
+                        }
+                      },
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "url",
+                "type": "url",
+                "title": "Profile URL"
+              }
+            ],
+            "type": "object",
+            "name": "socialLink"
+          }
+        ],
+        "name": "socialLinks",
+        "type": "array",
+        "title": "Social links"
+      },
+      {
+        "initialValue": "© {year} TVibeFlex. All rights reserved.",
+        "description": "Use {year} for the current year.",
+        "name": "copyrightText",
+        "type": "string",
+        "title": "Copyright line"
+      },
+      {
+        "initialValue": "Built with Next.js · Sanity",
+        "name": "creditLine",
+        "type": "string",
+        "title": "Credit line"
+      }
+    ],
+    "name": "footerSettings",
+    "type": "document",
+    "title": "Footer"
+  }
+]

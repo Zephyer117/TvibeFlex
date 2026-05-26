@@ -9,6 +9,8 @@ import { homepageStats } from "./homepageStats";
 import { newsletterSettings } from "./newsletterSettings";
 import { newsletterSubscriber } from "./newsletterSubscriber";
 import { footerSettings } from "./footerSettings";
+import { homepageHeroBanners } from "./homepageHeroBanners";
+import { homepagePromoBanner } from "./homepagePromoBanner";
 
 export const schemaTypes = [
   product,
@@ -19,6 +21,8 @@ export const schemaTypes = [
   order,
   testimonial,
   homepageStats,
+  homepageHeroBanners,
+  homepagePromoBanner,
   newsletterSettings,
   newsletterSubscriber,
   footerSettings,

@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Truck, Shield, RotateCcw } from "lucide-react";
+import HeroBannerSlider from "@/components/HeroBannerSlider";
+import PromoBanner from "@/components/PromoBanner";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import NewsletterSection from "@/components/NewsletterSection";
 import ProductCard from "@/components/ProductCard";
@@ -10,6 +12,8 @@ import {
   getRecentPosts,
   getHomepageStats,
   DEFAULT_HOMEPAGE_STATS,
+  getHomepageHeroBanners,
+  getHomepagePromoBanner,
   getNewsletterSettings,
   DEFAULT_NEWSLETTER_SETTINGS,
 } from "@/lib/queries";
@@ -17,17 +21,26 @@ import { urlForImage } from "@/lib/sanity";
 import { formatDate } from "@/lib/utils";
 
 export default async function HomePage() {
-  const [products, categories, posts, stats, newsletterSettings] =
+  const [products, categories, posts, stats, heroBanners, promoBanner, newsletterSettings] =
     await Promise.all([
       getFeaturedProducts().catch(() => []),
       getAllCategories().catch(() => []),
       getRecentPosts(3).catch(() => []),
       getHomepageStats().catch(() => DEFAULT_HOMEPAGE_STATS),
+      getHomepageHeroBanners().catch(() => []),
+      getHomepagePromoBanner().catch(() => null),
       getNewsletterSettings().catch(() => DEFAULT_NEWSLETTER_SETTINGS),
     ]);
 
   return (
     <>
+      {/* ─── Hero slider (Sanity: offers & announcements) ─────────────── */}
+      {heroBanners.length > 0 && (
+        <div className="pt-16 w-full overflow-x-hidden">
+          <HeroBannerSlider slides={heroBanners} />
+        </div>
+      )}
+
       {/* ─── Hero ─────────────────────────────────────────────────────── */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background */}
@@ -106,6 +119,9 @@ export default async function HomePage() {
           </div>
         </section>
       )}
+
+      {/* ─── Promo banner (Sanity: flash sale / featured picks) ───────── */}
+      {promoBanner && <PromoBanner banner={promoBanner} />}
 
       {/* ─── Featured Products ─────────────────────────────────────────── */}
       {products.length > 0 && (

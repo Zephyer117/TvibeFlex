@@ -215,6 +215,33 @@ export interface HomepageStats {
   stats: HomepageStat[];
 }
 
+// ─── Homepage banners (Sanity singletons) ───────────────────────────────────
+export interface HeroBannerSlide {
+  _key: string;
+  active?: boolean;
+  image: SanityImage;
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+}
+
+export type PromoBannerVariant = "flash_sale" | "featured" | "offer";
+
+export interface HomepagePromoBanner {
+  enabled?: boolean;
+  variant?: PromoBannerVariant;
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  endAt?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+  backgroundImage?: SanityImage;
+  products?: Product[];
+}
+
 // ─── Testimonial (Sanity) ──────────────────────────────────────────────────
 export type TestimonialStatus = "pending" | "approved" | "rejected";
 

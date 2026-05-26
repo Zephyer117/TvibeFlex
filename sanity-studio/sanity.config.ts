@@ -25,6 +25,24 @@ export default defineConfig({
                   .title("Homepage Stats")
               ),
             S.listItem()
+              .title("🖼 Hero Slider (Offers)")
+              .id("homepageHeroBanners")
+              .child(
+                S.document()
+                  .schemaType("homepageHeroBanners")
+                  .documentId("homepageHeroBanners")
+                  .title("Hero Slider")
+              ),
+            S.listItem()
+              .title("⚡ Promo Banner (Flash / Featured)")
+              .id("homepagePromoBanner")
+              .child(
+                S.document()
+                  .schemaType("homepagePromoBanner")
+                  .documentId("homepagePromoBanner")
+                  .title("Promo Banner")
+              ),
+            S.listItem()
               .title("✉️ Newsletter CTA")
               .id("newsletterSettings")
               .child(

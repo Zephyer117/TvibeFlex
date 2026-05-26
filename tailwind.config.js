@@ -59,6 +59,7 @@ module.exports = {
         "fade-in": "fadeIn 0.4s ease-out forwards",
         shimmer: "shimmer 2s linear infinite",
         float: "float 3s ease-in-out infinite",
+        "hero-zoom": "heroZoom 12s ease-out forwards",
       },
       keyframes: {
         fadeUp: {
@@ -76,6 +77,10 @@ module.exports = {
         float: {
           "0%, 100%": { transform: "translateY(0px)" },
           "50%": { transform: "translateY(-8px)" },
+        },
+        heroZoom: {
+          "0%": { transform: "scale(1.05)" },
+          "100%": { transform: "scale(1.12)" },
         },
       },
       borderRadius: {

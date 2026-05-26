@@ -6,6 +6,8 @@ import type {
   Order,
   Testimonial,
   HomepageStat,
+  HeroBannerSlide,
+  HomepagePromoBanner,
   NewsletterSettings,
   FooterSettings,
 } from "@/types";
@@ -252,6 +254,44 @@ export async function getHomepageStats(): Promise<HomepageStat[]> {
   );
 
   return stats?.length === 3 ? stats : DEFAULT_HOMEPAGE_STATS;
+}
+
+// ─── Homepage banners ───────────────────────────────────────────────────────
+
+export async function getHomepageHeroBanners(): Promise<HeroBannerSlide[]> {
+  const doc = await sanityClient.fetch<{ slides?: HeroBannerSlide[] } | null>(
+    `*[_type == "homepageHeroBanners" && _id == "homepageHeroBanners"][0]{
+      slides[]{
+        _key, active, eyebrow, title, subtitle, ctaLabel, ctaHref, image
+      }
+    }`,
+    {},
+    { next: { revalidate: 60 } }
+  );
+
+  return (
+    doc?.slides?.filter(
+      (s) => s?.active !== false && s?.title?.trim() && s?.image
+    ) ?? []
+  );
+}
+
+export async function getHomepagePromoBanner(): Promise<HomepagePromoBanner | null> {
+  const doc = await sanityClient.fetch<HomepagePromoBanner | null>(
+    `*[_type == "homepagePromoBanner" && _id == "homepagePromoBanner"][0]{
+      enabled, variant, eyebrow, title, description, endAt, ctaLabel, ctaHref, backgroundImage,
+      "products": products[]->{ ${PRODUCT_FIELDS} }
+    }`,
+    {},
+    { next: { revalidate: 60 } }
+  );
+
+  if (!doc?.enabled || !doc.title?.trim()) return null;
+
+  const products = doc.products?.filter((p) => p?._id) ?? [];
+  if (products.length === 0) return null;
+
+  return { ...doc, products };
 }
 
 // ─── Testimonials ───────────────────────────────────────────────────────────
